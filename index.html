@@ -303,6 +303,7 @@
     .back-link {
       display: inline-flex;
       align-items: center;
+      gap: 6px;
       margin-bottom: 26px;
       border: 0;
       padding: 0;
@@ -371,9 +372,6 @@
     }
 
     .detail-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 260px;
-      gap: 44px;
       padding: 30px 34px 34px;
     }
 
@@ -387,7 +385,10 @@
     .detail-meta-list {
       margin: 0;
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--color-border);
     }
 
     .detail-meta-list div {
@@ -410,6 +411,11 @@
       color: var(--color-text-primary);
     }
 
+    .detail-copy {
+      margin-top: 28px;
+      max-width: 640px;
+    }
+
     @media (max-width: 1120px) {
       .header-inner {
         width: auto;
@@ -426,11 +432,6 @@
       .gallery-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 20px;
-      }
-
-      .detail-body {
-        grid-template-columns: 1fr;
-        gap: 28px;
       }
 
       .about-layout {
@@ -494,6 +495,10 @@
 
       .detail-body {
         padding: 24px;
+      }
+
+      .detail-meta-list {
+        grid-template-columns: 1fr;
       }
 
       .history-item {
@@ -563,7 +568,7 @@
   </main>
 
   <main class="page-content detail-page" aria-label="Project detail">
-    <button class="back-link" type="button" id="backButton">Back to works</button>
+    <button class="back-link" type="button" id="backButton">&lt; Back to works</button>
     <article class="detail-hero" id="detailHero"></article>
   </main>
 
@@ -701,7 +706,6 @@
           </div>
         </div>
         <div class="detail-body">
-          <p class="detail-description">${project.description}</p>
           <dl class="detail-meta-list">
             <div>
               <dt>ROLE</dt>
@@ -716,6 +720,9 @@
               <dd>${project.tag}</dd>
             </div>
           </dl>
+          <div class="detail-copy">
+            <p class="detail-description">${project.description}</p>
+          </div>
         </div>
       `;
     }
