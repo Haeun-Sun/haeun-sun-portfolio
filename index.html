@@ -1,0 +1,765 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HAEUN SUN Portfolio</title>
+  <style>
+    :root {
+      --color-background: #ffffff;
+      --color-surface: #ffffff;
+      --color-text-primary: #111111;
+      --color-text-secondary: #777777;
+      --color-text-muted: #9a9a9a;
+      --color-border: #e8e8e8;
+      --color-border-strong: #d9d9d9;
+      --content-width: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scrollbar-gutter: stable;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 60px;
+      background: var(--color-background);
+      color: var(--color-text-primary);
+      font-family: Arial, Pretendard, sans-serif;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      height: 60px;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .header-inner {
+      width: var(--content-width);
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      color: var(--color-text-primary);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-link {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--color-text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible,
+    .nav-link.is-active {
+      color: var(--color-text-primary);
+      outline: none;
+    }
+
+    .page-content {
+      width: var(--content-width);
+      margin: 0 auto;
+      padding-top: 44px;
+      padding-bottom: 80px;
+    }
+
+    .section-title {
+      margin: 0 0 26px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: 0.05em;
+      color: #8a8a8a;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 20px;
+      row-gap: 22px;
+    }
+
+    .portfolio-card {
+      display: block;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: inherit;
+      text-decoration: none;
+      overflow: hidden;
+      transform: scale(1);
+      transition: transform 180ms ease, border-color 180ms ease;
+      will-change: transform;
+    }
+
+    .portfolio-card:hover,
+    .portfolio-card:focus-visible {
+      border-color: var(--color-border-strong);
+      transform: scale(1.025);
+      outline: none;
+    }
+
+    .portfolio-card:focus-visible {
+      box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
+    }
+
+    .thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 18px;
+      background: #111111;
+      color: #ffffff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .thumb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--thumb-bg);
+    }
+
+    .thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.46));
+    }
+
+    .thumb-label {
+      position: relative;
+      z-index: 1;
+      max-width: 86%;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.08;
+      color: #ffffff;
+    }
+
+    .card-body {
+      min-height: 78px;
+      padding: 15px 14px 16px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--color-text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-meta {
+      margin: 10px 0 0;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--color-text-secondary);
+    }
+
+    .tag-row {
+      margin-top: 10px;
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 6px;
+      border: 1px solid #777777;
+      background: #ffffff;
+      color: #555555;
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .detail-page,
+    .about-page {
+      display: none;
+    }
+
+    body.is-detail .gallery-page,
+    body.is-about .gallery-page {
+      display: none;
+    }
+
+    body.is-detail .detail-page {
+      display: block;
+    }
+
+    body.is-about .about-page {
+      display: block;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 64px;
+      border-top: 1px solid var(--color-border);
+      padding-top: 30px;
+    }
+
+    .about-intro {
+      margin: 0;
+      color: #333333;
+      font-size: 15px;
+      line-height: 1.72;
+    }
+
+    .about-list {
+      margin: 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .about-list div {
+      min-width: 0;
+    }
+
+    .about-list dt {
+      margin: 0 0 5px;
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: 1.4px;
+      color: var(--color-text-muted);
+      font-weight: 700;
+    }
+
+    .about-list dd {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--color-text-primary);
+    }
+
+    .about-history {
+      margin-top: 34px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .history-item {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      gap: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .history-year {
+      color: var(--color-text-muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .history-text {
+      margin: 0;
+      color: var(--color-text-primary);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 26px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      color: var(--color-text-primary);
+      outline: none;
+    }
+
+    .detail-hero {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .detail-visual {
+      min-height: 430px;
+      display: flex;
+      align-items: flex-end;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .detail-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--detail-bg);
+    }
+
+    .detail-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.58));
+    }
+
+    .detail-title-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .detail-kicker {
+      margin: 0 0 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .detail-title {
+      margin: 0;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.08;
+      color: #ffffff;
+    }
+
+    .detail-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 44px;
+      padding: 30px 34px 34px;
+    }
+
+    .detail-description {
+      margin: 0;
+      color: #333333;
+      font-size: 15px;
+      line-height: 1.72;
+    }
+
+    .detail-meta-list {
+      margin: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .detail-meta-list div {
+      min-width: 0;
+    }
+
+    .detail-meta-list dt {
+      margin: 0 0 5px;
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: 1.4px;
+      color: var(--color-text-muted);
+      font-weight: 700;
+    }
+
+    .detail-meta-list dd {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--color-text-primary);
+    }
+
+    @media (max-width: 1120px) {
+      .header-inner {
+        width: auto;
+        padding: 0 24px;
+      }
+
+      .page-content {
+        width: auto;
+        padding: 36px 24px 72px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .detail-body {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .detail-visual {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-top: 56px;
+      }
+
+      .site-header {
+        height: 56px;
+      }
+
+      .header-inner {
+        padding: 0 16px;
+      }
+
+      .site-nav {
+        gap: 18px;
+      }
+
+      .nav-link {
+        font-size: 11px;
+        letter-spacing: 0.05em;
+      }
+
+      .page-content {
+        padding: 32px 16px 64px;
+      }
+
+      .section-title {
+        margin-bottom: 22px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        row-gap: 18px;
+      }
+
+      .portfolio-card:hover,
+      .portfolio-card:focus-visible {
+        transform: scale(1.012);
+      }
+
+      .detail-visual {
+        min-height: 300px;
+        padding: 24px;
+      }
+
+      .detail-title {
+        font-size: 30px;
+      }
+
+      .detail-body {
+        padding: 24px;
+      }
+
+      .history-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="brand">HAEUN SUN</h1>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <button class="nav-link is-active" type="button" id="worksNav">WORKS</button>
+        <button class="nav-link" type="button" id="aboutNav">ABOUT ME</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-content gallery-page" aria-label="Portfolio gallery">
+    <h2 class="section-title">WORKS</h2>
+    <section class="gallery-grid" id="galleryGrid"></section>
+  </main>
+
+  <main class="page-content about-page" aria-label="About Haeun Sun">
+    <h2 class="section-title">ABOUT ME</h2>
+    <section class="about-layout">
+      <div>
+        <p class="about-intro">
+          Haeun Sun is a visual editor and motion designer focused on clear storytelling, refined pacing, and image-led portfolio experiences. She works across motion identity, editorial video, VFX references, and campaign visuals.
+        </p>
+        <div class="about-history" aria-label="Brief career history">
+          <div class="history-item">
+            <span class="history-year">2026</span>
+            <p class="history-text">Built a motion identity and editorial showreel system for portfolio presentation.</p>
+          </div>
+          <div class="history-item">
+            <span class="history-year">2025</span>
+            <p class="history-text">Developed short-form social motion templates and VFX breakdown references.</p>
+          </div>
+          <div class="history-item">
+            <span class="history-year">2024</span>
+            <p class="history-text">Worked on animation timing studies, title sequence concepts, and documentary edit boards.</p>
+          </div>
+        </div>
+      </div>
+      <dl class="about-list">
+        <div>
+          <dt>NAME</dt>
+          <dd>HAEUN SUN</dd>
+        </div>
+        <div>
+          <dt>FIELD</dt>
+          <dd>Motion Design, Video Editing, Visual Direction</dd>
+        </div>
+        <div>
+          <dt>TOOLS</dt>
+          <dd>Premiere Pro, After Effects, Photoshop, Figma</dd>
+        </div>
+        <div>
+          <dt>CONTACT</dt>
+          <dd>hello@haeunsun.com</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <main class="page-content detail-page" aria-label="Project detail">
+    <button class="back-link" type="button" id="backButton">Back to works</button>
+    <article class="detail-hero" id="detailHero"></article>
+  </main>
+
+  <script>
+    const projects = [
+      {
+        id: 'motion-identity',
+        title: 'Motion Identity System',
+        category: 'Motion Design',
+        year: '2026',
+        role: 'Design Direction, Motion',
+        label: 'MOTION\nIDENTITY',
+        tag: 'Brand Film',
+        bg: 'radial-gradient(circle at 72% 28%, #f6e7b5 0 12%, transparent 13%), linear-gradient(135deg, #101010 0%, #313131 42%, #b8b8b8 100%)',
+        description: 'A compact visual identity study built around restrained typography, rhythmic cuts, and a monochrome base. The system is designed to work across title cards, reels, and short campaign edits.'
+      },
+      {
+        id: 'editorial-showreel',
+        title: 'Editorial Showreel 2026',
+        category: 'Editing',
+        year: '2026',
+        role: 'Edit, Color, Sound Rhythm',
+        label: 'EDITORIAL\nSHOWREEL',
+        tag: 'Showreel',
+        bg: 'linear-gradient(120deg, #0b1220 0%, #23395d 40%, #f08a24 78%, #111111 100%)',
+        description: 'A showreel page concept focused on pacing and contrast. The piece combines atmospheric stills, quick motion beats, and sharp typographic emphasis for a portfolio opening sequence.'
+      },
+      {
+        id: 'vfx-breakdown',
+        title: 'VFX Breakdown Study',
+        category: 'VFX Research',
+        year: '2025',
+        role: 'Research, Breakdown, Layout',
+        label: 'VFX\nBREAKDOWN',
+        tag: 'Research',
+        bg: 'linear-gradient(90deg, rgba(12, 52, 38, 0.95), rgba(6, 11, 16, 0.88)), repeating-linear-gradient(90deg, transparent 0 24%, rgba(255,255,255,.15) 24% 25%)',
+        description: 'A reference-led breakdown format for analyzing visual effects layers. The detail layout prioritizes clean comparisons between original plates, compositing stages, and final frames.'
+      },
+      {
+        id: 'social-campaign',
+        title: 'Social Campaign Motion Pack',
+        category: 'Social Content',
+        year: '2025',
+        role: 'Motion Template, Art Direction',
+        label: 'SOCIAL\nCAMPAIGN',
+        tag: 'Template',
+        bg: 'radial-gradient(circle at 18% 72%, #6fffc4 0 16%, transparent 17%), linear-gradient(135deg, #111111 0%, #16362e 45%, #92dbc2 100%)',
+        description: 'A modular motion pack for short-form social posts. The system uses simple framing rules, fast-reading text, and reusable animated accents.'
+      },
+      {
+        id: 'music-video',
+        title: 'Music Video Visual Notes',
+        category: 'Videography',
+        year: '2025',
+        role: 'Camera, Edit, Look Development',
+        label: 'MUSIC\nVIDEO',
+        tag: 'Videography',
+        bg: 'linear-gradient(145deg, #050505 0%, #333333 34%, #f4f4f4 35%, #1d1d1d 70%, #050505 100%)',
+        description: 'A black-and-white visual direction study for a live performance video. The focus is on framing, texture, silhouette, and a raw documentary tone.'
+      },
+      {
+        id: 'animation-study',
+        title: 'Animation Timing Study',
+        category: 'Animation',
+        year: '2024',
+        role: 'Timing, Layout, Reference',
+        label: 'ANIMATION\nTIMING',
+        tag: 'Animation',
+        bg: 'repeating-linear-gradient(12deg, #101010 0 18px, #1e1e1e 18px 36px), radial-gradient(circle at 76% 42%, #f0c25a 0 18%, transparent 19%)',
+        description: 'A timing reference board for studying anticipation, smear frames, and impact poses. The page presents motion thinking in a quiet gallery format.'
+      },
+      {
+        id: 'title-sequence',
+        title: 'Title Sequence Exploration',
+        category: 'Title Design',
+        year: '2024',
+        role: 'Typography, Motion Direction',
+        label: 'TITLE\nSEQUENCE',
+        tag: 'Typography',
+        bg: 'linear-gradient(120deg, #ececec 0%, #ffffff 28%, #111111 29%, #111111 72%, #b6b6b6 100%)',
+        description: 'A type-led opening sequence concept using scale, cropping, and stark contrast. The design keeps the interface minimal so the typography carries the visual energy.'
+      },
+      {
+        id: 'documentary-edit',
+        title: 'Documentary Edit Board',
+        category: 'Film Editing',
+        year: '2024',
+        role: 'Edit, Story Structure',
+        label: 'DOCU\nEDIT',
+        tag: 'Editing',
+        bg: 'linear-gradient(135deg, #242424, #777777), radial-gradient(circle at 30% 20%, rgba(255,255,255,.65), transparent 24%)',
+        description: 'A structured edit board for documentary material. It organizes interview moments, cutaway rhythm, and emotional beats into a simple browsing experience.'
+      },
+      {
+        id: 'brand-reel',
+        title: 'Brand Reel Direction',
+        category: 'Art Direction',
+        year: '2023',
+        role: 'Creative Direction, Edit',
+        label: 'BRAND\nREEL',
+        tag: 'Direction',
+        bg: 'linear-gradient(125deg, #121212 0%, #4f4f4f 38%, #ece7df 39%, #c9c2b8 62%, #111111 100%)',
+        description: 'A restrained brand reel concept for collecting campaign visuals. The direction balances polished image-making with an archive-like portfolio structure.'
+      }
+    ];
+
+    const galleryGrid = document.querySelector('#galleryGrid');
+    const detailHero = document.querySelector('#detailHero');
+    const backButton = document.querySelector('#backButton');
+    const worksNav = document.querySelector('#worksNav');
+    const aboutNav = document.querySelector('#aboutNav');
+
+    function renderGallery() {
+      galleryGrid.innerHTML = projects.map((project) => `
+        <a class="portfolio-card" href="#${project.id}" aria-label="${project.title} detail page">
+          <div class="thumb" style="--thumb-bg: ${project.bg}">
+            <span class="thumb-label">${project.label.replace('\\n', '<br>')}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${project.title}</h3>
+            <p class="card-meta">${project.category} / ${project.year}</p>
+            <div class="tag-row"><span class="card-tag">${project.tag}</span></div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    function renderDetail(project) {
+      detailHero.style.setProperty('--detail-bg', project.bg);
+      detailHero.innerHTML = `
+        <div class="detail-visual">
+          <div class="detail-title-wrap">
+            <p class="detail-kicker">${project.category.toUpperCase()}</p>
+            <h2 class="detail-title">${project.title}</h2>
+          </div>
+        </div>
+        <div class="detail-body">
+          <p class="detail-description">${project.description}</p>
+          <dl class="detail-meta-list">
+            <div>
+              <dt>ROLE</dt>
+              <dd>${project.role}</dd>
+            </div>
+            <div>
+              <dt>YEAR</dt>
+              <dd>${project.year}</dd>
+            </div>
+            <div>
+              <dt>TYPE</dt>
+              <dd>${project.tag}</dd>
+            </div>
+          </dl>
+        </div>
+      `;
+    }
+
+    function syncRoute() {
+      const id = window.location.hash.replace('#', '');
+      const selectedProject = projects.find((project) => project.id === id);
+      const isAbout = id === 'about';
+
+      if (selectedProject) {
+        document.body.classList.add('is-detail');
+        document.body.classList.remove('is-about');
+        worksNav.classList.add('is-active');
+        aboutNav.classList.remove('is-active');
+        renderDetail(selectedProject);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+
+      document.body.classList.remove('is-detail');
+      document.body.classList.toggle('is-about', isAbout);
+      worksNav.classList.toggle('is-active', !isAbout);
+      aboutNav.classList.toggle('is-active', isAbout);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    backButton.addEventListener('click', () => {
+      history.pushState('', document.title, window.location.pathname + window.location.search);
+      syncRoute();
+    });
+
+    worksNav.addEventListener('click', () => {
+      history.pushState('', document.title, window.location.pathname + window.location.search);
+      syncRoute();
+    });
+
+    aboutNav.addEventListener('click', () => {
+      window.location.hash = 'about';
+    });
+
+    window.addEventListener('hashchange', syncRoute);
+
+    renderGallery();
+    syncRoute();
+  </script>
+</body>
+</html>
