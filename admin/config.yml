@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: Haeun-Sun/haeun-sun-portfolio
+  name: git-gateway
   branch: main
 
 media_folder: "assets/uploads"
