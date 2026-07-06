@@ -1,11 +1,12 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Haeun-Sun/haeun-sun-portfolio
   branch: main
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
-site_url: "https://haeun-sun.netlify.app"
-display_url: "https://haeun-sun.netlify.app"
+site_url: "https://haeun-sun-portfolio.netlify.app"
+display_url: "https://haeun-sun-portfolio.netlify.app"
 locale: "en"
 
 collections:
