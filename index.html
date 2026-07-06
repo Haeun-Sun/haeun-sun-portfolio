@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HAEUN SUN</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     :root {
       --color-background: #ffffff;
@@ -155,6 +156,12 @@
       position: absolute;
       inset: 0;
       background: var(--thumb-bg);
+    }
+
+    .thumb.has-image::before {
+      background-image: var(--thumb-image);
+      background-size: cover;
+      background-position: center;
     }
 
     .thumb::after {
@@ -342,6 +349,12 @@
       background: var(--detail-bg);
     }
 
+    .detail-visual.has-image::before {
+      background-image: var(--detail-image);
+      background-size: cover;
+      background-position: center;
+    }
+
     .detail-visual::after {
       content: "";
       position: absolute;
@@ -417,6 +430,31 @@
       margin-right: auto;
       margin-left: auto;
       max-width: 640px;
+    }
+
+    .project-media {
+      display: grid;
+      gap: 20px;
+      margin-top: 34px;
+    }
+
+    .project-media-item {
+      margin: 0;
+    }
+
+    .project-media-item img {
+      width: 100%;
+      display: block;
+      border: 1px solid var(--color-border);
+      background: #f5f5f5;
+    }
+
+    .project-media-item figcaption {
+      margin-top: 8px;
+      color: var(--color-text-secondary);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
     }
 
     @media (max-width: 1120px) {
@@ -529,45 +567,7 @@
 
   <main class="page-content about-page" aria-label="About Haeun Sun">
     <h2 class="section-title">ABOUT ME</h2>
-    <section class="about-layout">
-      <div>
-        <p class="about-intro">
-          Haeun Sun is a visual editor and motion designer focused on clear storytelling, refined pacing, and image-led portfolio experiences. She works across motion identity, editorial video, VFX references, and campaign visuals.
-        </p>
-        <div class="about-history" aria-label="Brief career history">
-          <div class="history-item">
-            <span class="history-year">2026</span>
-            <p class="history-text">Built a motion identity and editorial showreel system for portfolio presentation.</p>
-          </div>
-          <div class="history-item">
-            <span class="history-year">2025</span>
-            <p class="history-text">Developed short-form social motion templates and VFX breakdown references.</p>
-          </div>
-          <div class="history-item">
-            <span class="history-year">2024</span>
-            <p class="history-text">Worked on animation timing studies, title sequence concepts, and documentary edit boards.</p>
-          </div>
-        </div>
-      </div>
-      <dl class="about-list">
-        <div>
-          <dt>NAME</dt>
-          <dd>HAEUN SUN</dd>
-        </div>
-        <div>
-          <dt>FIELD</dt>
-          <dd>Motion Design, Video Editing, Visual Direction</dd>
-        </div>
-        <div>
-          <dt>TOOLS</dt>
-          <dd>Premiere Pro, After Effects, Photoshop, Figma</dd>
-        </div>
-        <div>
-          <dt>CONTACT</dt>
-          <dd>hello@haeunsun.com</dd>
-        </div>
-      </dl>
-    </section>
+    <section class="about-layout" id="aboutContent"></section>
   </main>
 
   <main class="page-content detail-page" aria-label="Project detail">
@@ -576,156 +576,134 @@
   </main>
 
   <script>
-    const projects = [
-      {
-        id: 'motion-identity',
-        title: 'Motion Identity System',
-        category: 'Motion Design',
-        year: '2026',
-        role: 'Design Direction, Motion',
-        label: 'MOTION\nIDENTITY',
-        tag: 'Brand Film',
-        bg: 'radial-gradient(circle at 72% 28%, #f6e7b5 0 12%, transparent 13%), linear-gradient(135deg, #101010 0%, #313131 42%, #b8b8b8 100%)',
-        description: 'A compact visual identity study built around restrained typography, rhythmic cuts, and a monochrome base. The system is designed to work across title cards, reels, and short campaign edits.'
-      },
-      {
-        id: 'editorial-showreel',
-        title: 'Editorial Showreel 2026',
-        category: 'Editing',
-        year: '2026',
-        role: 'Edit, Color, Sound Rhythm',
-        label: 'EDITORIAL\nSHOWREEL',
-        tag: 'Showreel',
-        bg: 'linear-gradient(120deg, #0b1220 0%, #23395d 40%, #f08a24 78%, #111111 100%)',
-        description: 'A showreel page concept focused on pacing and contrast. The piece combines atmospheric stills, quick motion beats, and sharp typographic emphasis for a portfolio opening sequence.'
-      },
-      {
-        id: 'vfx-breakdown',
-        title: 'VFX Breakdown Study',
-        category: 'VFX Research',
-        year: '2025',
-        role: 'Research, Breakdown, Layout',
-        label: 'VFX\nBREAKDOWN',
-        tag: 'Research',
-        bg: 'linear-gradient(90deg, rgba(12, 52, 38, 0.95), rgba(6, 11, 16, 0.88)), repeating-linear-gradient(90deg, transparent 0 24%, rgba(255,255,255,.15) 24% 25%)',
-        description: 'A reference-led breakdown format for analyzing visual effects layers. The detail layout prioritizes clean comparisons between original plates, compositing stages, and final frames.'
-      },
-      {
-        id: 'social-campaign',
-        title: 'Social Campaign Motion Pack',
-        category: 'Social Content',
-        year: '2025',
-        role: 'Motion Template, Art Direction',
-        label: 'SOCIAL\nCAMPAIGN',
-        tag: 'Template',
-        bg: 'radial-gradient(circle at 18% 72%, #6fffc4 0 16%, transparent 17%), linear-gradient(135deg, #111111 0%, #16362e 45%, #92dbc2 100%)',
-        description: 'A modular motion pack for short-form social posts. The system uses simple framing rules, fast-reading text, and reusable animated accents.'
-      },
-      {
-        id: 'music-video',
-        title: 'Music Video Visual Notes',
-        category: 'Videography',
-        year: '2025',
-        role: 'Camera, Edit, Look Development',
-        label: 'MUSIC\nVIDEO',
-        tag: 'Videography',
-        bg: 'linear-gradient(145deg, #050505 0%, #333333 34%, #f4f4f4 35%, #1d1d1d 70%, #050505 100%)',
-        description: 'A black-and-white visual direction study for a live performance video. The focus is on framing, texture, silhouette, and a raw documentary tone.'
-      },
-      {
-        id: 'animation-study',
-        title: 'Animation Timing Study',
-        category: 'Animation',
-        year: '2024',
-        role: 'Timing, Layout, Reference',
-        label: 'ANIMATION\nTIMING',
-        tag: 'Animation',
-        bg: 'repeating-linear-gradient(12deg, #101010 0 18px, #1e1e1e 18px 36px), radial-gradient(circle at 76% 42%, #f0c25a 0 18%, transparent 19%)',
-        description: 'A timing reference board for studying anticipation, smear frames, and impact poses. The page presents motion thinking in a quiet gallery format.'
-      },
-      {
-        id: 'title-sequence',
-        title: 'Title Sequence Exploration',
-        category: 'Title Design',
-        year: '2024',
-        role: 'Typography, Motion Direction',
-        label: 'TITLE\nSEQUENCE',
-        tag: 'Typography',
-        bg: 'linear-gradient(120deg, #ececec 0%, #ffffff 28%, #111111 29%, #111111 72%, #b6b6b6 100%)',
-        description: 'A type-led opening sequence concept using scale, cropping, and stark contrast. The design keeps the interface minimal so the typography carries the visual energy.'
-      },
-      {
-        id: 'documentary-edit',
-        title: 'Documentary Edit Board',
-        category: 'Film Editing',
-        year: '2024',
-        role: 'Edit, Story Structure',
-        label: 'DOCU\nEDIT',
-        tag: 'Editing',
-        bg: 'linear-gradient(135deg, #242424, #777777), radial-gradient(circle at 30% 20%, rgba(255,255,255,.65), transparent 24%)',
-        description: 'A structured edit board for documentary material. It organizes interview moments, cutaway rhythm, and emotional beats into a simple browsing experience.'
-      },
-      {
-        id: 'brand-reel',
-        title: 'Brand Reel Direction',
-        category: 'Art Direction',
-        year: '2023',
-        role: 'Creative Direction, Edit',
-        label: 'BRAND\nREEL',
-        tag: 'Direction',
-        bg: 'linear-gradient(125deg, #121212 0%, #4f4f4f 38%, #ece7df 39%, #c9c2b8 62%, #111111 100%)',
-        description: 'A restrained brand reel concept for collecting campaign visuals. The direction balances polished image-making with an archive-like portfolio structure.'
-      }
-    ];
-
+    let projects = [];
+    let about = {};
     const galleryGrid = document.querySelector('#galleryGrid');
+    const aboutContent = document.querySelector('#aboutContent');
     const detailHero = document.querySelector('#detailHero');
     const backButton = document.querySelector('#backButton');
     const worksNav = document.querySelector('#worksNav');
     const aboutNav = document.querySelector('#aboutNav');
 
+    function escapeHtml(value = '') {
+      return String(value).replace(/[&<>"']/g, (character) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      }[character]));
+    }
+
+    function normalizePath(path = '') {
+      if (!path) return '';
+      if (/^(https?:)?\/\//.test(path)) return path;
+      return path.replace(/^\/+/, '');
+    }
+
+    function renderAbout() {
+      const history = Array.isArray(about.history) ? about.history : [];
+      aboutContent.innerHTML = `
+        <div>
+          <p class="about-intro">${escapeHtml(about.intro)}</p>
+          <div class="about-history" aria-label="Brief career history">
+            ${history.map((item) => `
+              <div class="history-item">
+                <span class="history-year">${escapeHtml(item.year)}</span>
+                <p class="history-text">${escapeHtml(item.text)}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <dl class="about-list">
+          <div>
+            <dt>NAME</dt>
+            <dd>${escapeHtml(about.name)}</dd>
+          </div>
+          <div>
+            <dt>FIELD</dt>
+            <dd>${escapeHtml(about.field)}</dd>
+          </div>
+          <div>
+            <dt>TOOLS</dt>
+            <dd>${escapeHtml(about.tools)}</dd>
+          </div>
+          <div>
+            <dt>CONTACT</dt>
+            <dd>${escapeHtml(about.contact)}</dd>
+          </div>
+        </dl>
+      `;
+    }
+
     function renderGallery() {
-      galleryGrid.innerHTML = projects.map((project) => `
+      const publicProjects = projects.filter((project) => project.visibility !== 'unlisted');
+
+      galleryGrid.innerHTML = publicProjects.map((project) => {
+        const thumbnail = normalizePath(project.thumbnail);
+        const thumbStyle = thumbnail
+          ? `--thumb-image: url('${thumbnail}')`
+          : `--thumb-bg: ${project.background || '#111111'}`;
+        const thumbClass = thumbnail ? 'thumb has-image' : 'thumb';
+
+        return `
         <a class="portfolio-card" href="#${project.id}" aria-label="${project.title} detail page">
-          <div class="thumb" style="--thumb-bg: ${project.bg}">
-            <span class="thumb-label">${project.label.replace('\\n', '<br>')}</span>
+          <div class="${thumbClass}" style="${thumbStyle}">
+            <span class="thumb-label">${escapeHtml(project.label || project.title).replace('\\n', '<br>')}</span>
           </div>
           <div class="card-body">
-            <h3 class="card-title">${project.title}</h3>
-            <p class="card-meta">${project.category} / ${project.year}</p>
-            <div class="tag-row"><span class="card-tag">${project.tag}</span></div>
+            <h3 class="card-title">${escapeHtml(project.title)}</h3>
+            <p class="card-meta">${escapeHtml(project.category)} / ${escapeHtml(project.year)}</p>
+            <div class="tag-row"><span class="card-tag">${escapeHtml(project.type)}</span></div>
           </div>
         </a>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function renderDetail(project) {
-      detailHero.style.setProperty('--detail-bg', project.bg);
+      const thumbnail = normalizePath(project.thumbnail);
+      const visualClass = thumbnail ? 'detail-visual has-image' : 'detail-visual';
+      const visualStyle = thumbnail
+        ? `--detail-image: url('${thumbnail}')`
+        : `--detail-bg: ${project.background || '#111111'}`;
+      const media = Array.isArray(project.media) ? project.media : [];
+
       detailHero.innerHTML = `
-        <div class="detail-visual">
+        <div class="${visualClass}" style="${visualStyle}">
           <div class="detail-title-wrap">
-            <p class="detail-kicker">${project.category.toUpperCase()}</p>
-            <h2 class="detail-title">${project.title}</h2>
+            <p class="detail-kicker">${escapeHtml(project.category).toUpperCase()}</p>
+            <h2 class="detail-title">${escapeHtml(project.title)}</h2>
           </div>
         </div>
         <div class="detail-body">
           <dl class="detail-meta-list">
             <div>
               <dt>ROLE</dt>
-              <dd>${project.role}</dd>
+              <dd>${escapeHtml(project.role)}</dd>
             </div>
             <div>
               <dt>YEAR</dt>
-              <dd>${project.year}</dd>
+              <dd>${escapeHtml(project.year)}</dd>
             </div>
             <div>
               <dt>TYPE</dt>
-              <dd>${project.tag}</dd>
+              <dd>${escapeHtml(project.type)}</dd>
             </div>
           </dl>
           <div class="detail-copy">
-            <p class="detail-description">${project.description}</p>
+            <p class="detail-description">${escapeHtml(project.description)}</p>
           </div>
+          ${media.length ? `
+            <div class="project-media">
+              ${media.map((item) => `
+                <figure class="project-media-item">
+                  <img src="${normalizePath(item.src)}" alt="${escapeHtml(item.alt || item.caption || project.title)}" loading="lazy">
+                  ${item.caption ? `<figcaption>${escapeHtml(item.caption)}</figcaption>` : ''}
+                </figure>
+              `).join('')}
+            </div>
+          ` : ''}
         </div>
       `;
     }
@@ -768,8 +746,34 @@
 
     window.addEventListener('hashchange', syncRoute);
 
-    renderGallery();
-    syncRoute();
+    async function init() {
+      try {
+        const response = await fetch('content/site.json', { cache: 'no-store' });
+        const data = await response.json();
+        about = data.about || {};
+        projects = Array.isArray(data.works) ? data.works : [];
+        renderAbout();
+        renderGallery();
+        syncRoute();
+      } catch (error) {
+        galleryGrid.innerHTML = '<p class="card-meta">Content could not be loaded. Please view this page from the deployed site.</p>';
+      }
+    }
+
+    init();
+  </script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', (user) => {
+        if (!user && window.location.hash.includes('invite_token')) {
+          window.netlifyIdentity.open();
+        }
+      });
+
+      window.netlifyIdentity.on('login', () => {
+        document.location.href = '/admin/';
+      });
+    }
   </script>
 </body>
 </html>

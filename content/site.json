@@ -1,0 +1,151 @@
+{
+  "about": {
+    "intro": "Haeun Sun is a visual editor and motion designer focused on clear storytelling, refined pacing, and image-led portfolio experiences. She works across motion identity, editorial video, VFX references, and campaign visuals.",
+    "name": "HAEUN SUN",
+    "field": "Motion Design, Video Editing, Visual Direction",
+    "tools": "Premiere Pro, After Effects, Photoshop, Figma",
+    "contact": "hello@haeunsun.com",
+    "history": [
+      {
+        "year": "2026",
+        "text": "Built a motion identity and editorial showreel system for portfolio presentation."
+      },
+      {
+        "year": "2025",
+        "text": "Developed short-form social motion templates and VFX breakdown references."
+      },
+      {
+        "year": "2024",
+        "text": "Worked on animation timing studies, title sequence concepts, and documentary edit boards."
+      }
+    ]
+  },
+  "works": [
+    {
+      "id": "motion-identity",
+      "title": "Motion Identity System",
+      "category": "Motion Design",
+      "year": "2026",
+      "role": "Design Direction, Motion",
+      "label": "MOTION\nIDENTITY",
+      "type": "Brand Film",
+      "visibility": "public",
+      "background": "radial-gradient(circle at 72% 28%, #f6e7b5 0 12%, transparent 13%), linear-gradient(135deg, #101010 0%, #313131 42%, #b8b8b8 100%)",
+      "thumbnail": "",
+      "description": "A compact visual identity study built around restrained typography, rhythmic cuts, and a monochrome base. The system is designed to work across title cards, reels, and short campaign edits.",
+      "media": []
+    },
+    {
+      "id": "editorial-showreel",
+      "title": "Editorial Showreel 2026",
+      "category": "Editing",
+      "year": "2026",
+      "role": "Edit, Color, Sound Rhythm",
+      "label": "EDITORIAL\nSHOWREEL",
+      "type": "Showreel",
+      "visibility": "public",
+      "background": "linear-gradient(120deg, #0b1220 0%, #23395d 40%, #f08a24 78%, #111111 100%)",
+      "thumbnail": "",
+      "description": "A showreel page concept focused on pacing and contrast. The piece combines atmospheric stills, quick motion beats, and sharp typographic emphasis for a portfolio opening sequence.",
+      "media": []
+    },
+    {
+      "id": "vfx-breakdown",
+      "title": "VFX Breakdown Study",
+      "category": "VFX Research",
+      "year": "2025",
+      "role": "Research, Breakdown, Layout",
+      "label": "VFX\nBREAKDOWN",
+      "type": "Research",
+      "visibility": "public",
+      "background": "linear-gradient(90deg, rgba(12, 52, 38, 0.95), rgba(6, 11, 16, 0.88)), repeating-linear-gradient(90deg, transparent 0 24%, rgba(255,255,255,.15) 24% 25%)",
+      "thumbnail": "",
+      "description": "A reference-led breakdown format for analyzing visual effects layers. The detail layout prioritizes clean comparisons between original plates, compositing stages, and final frames.",
+      "media": []
+    },
+    {
+      "id": "social-campaign",
+      "title": "Social Campaign Motion Pack",
+      "category": "Social Content",
+      "year": "2025",
+      "role": "Motion Template, Art Direction",
+      "label": "SOCIAL\nCAMPAIGN",
+      "type": "Template",
+      "visibility": "public",
+      "background": "radial-gradient(circle at 18% 72%, #6fffc4 0 16%, transparent 17%), linear-gradient(135deg, #111111 0%, #16362e 45%, #92dbc2 100%)",
+      "thumbnail": "",
+      "description": "A modular motion pack for short-form social posts. The system uses simple framing rules, fast-reading text, and reusable animated accents.",
+      "media": []
+    },
+    {
+      "id": "music-video",
+      "title": "Music Video Visual Notes",
+      "category": "Videography",
+      "year": "2025",
+      "role": "Camera, Edit, Look Development",
+      "label": "MUSIC\nVIDEO",
+      "type": "Videography",
+      "visibility": "public",
+      "background": "linear-gradient(145deg, #050505 0%, #333333 34%, #f4f4f4 35%, #1d1d1d 70%, #050505 100%)",
+      "thumbnail": "",
+      "description": "A black-and-white visual direction study for a live performance video. The focus is on framing, texture, silhouette, and a raw documentary tone.",
+      "media": []
+    },
+    {
+      "id": "animation-study",
+      "title": "Animation Timing Study",
+      "category": "Animation",
+      "year": "2024",
+      "role": "Timing, Layout, Reference",
+      "label": "ANIMATION\nTIMING",
+      "type": "Animation",
+      "visibility": "public",
+      "background": "repeating-linear-gradient(12deg, #101010 0 18px, #1e1e1e 18px 36px), radial-gradient(circle at 76% 42%, #f0c25a 0 18%, transparent 19%)",
+      "thumbnail": "",
+      "description": "A timing reference board for studying anticipation, smear frames, and impact poses. The page presents motion thinking in a quiet gallery format.",
+      "media": []
+    },
+    {
+      "id": "title-sequence",
+      "title": "Title Sequence Exploration",
+      "category": "Title Design",
+      "year": "2024",
+      "role": "Typography, Motion Direction",
+      "label": "TITLE\nSEQUENCE",
+      "type": "Typography",
+      "visibility": "public",
+      "background": "linear-gradient(120deg, #ececec 0%, #ffffff 28%, #111111 29%, #111111 72%, #b6b6b6 100%)",
+      "thumbnail": "",
+      "description": "A type-led opening sequence concept using scale, cropping, and stark contrast. The design keeps the interface minimal so the typography carries the visual energy.",
+      "media": []
+    },
+    {
+      "id": "documentary-edit",
+      "title": "Documentary Edit Board",
+      "category": "Film Editing",
+      "year": "2024",
+      "role": "Edit, Story Structure",
+      "label": "DOCU\nEDIT",
+      "type": "Editing",
+      "visibility": "public",
+      "background": "linear-gradient(135deg, #242424, #777777), radial-gradient(circle at 30% 20%, rgba(255,255,255,.65), transparent 24%)",
+      "thumbnail": "",
+      "description": "A structured edit board for documentary material. It organizes interview moments, cutaway rhythm, and emotional beats into a simple browsing experience.",
+      "media": []
+    },
+    {
+      "id": "brand-reel",
+      "title": "Brand Reel Direction",
+      "category": "Art Direction",
+      "year": "2023",
+      "role": "Creative Direction, Edit",
+      "label": "BRAND\nREEL",
+      "type": "Direction",
+      "visibility": "public",
+      "background": "linear-gradient(125deg, #121212 0%, #4f4f4f 38%, #ece7df 39%, #c9c2b8 62%, #111111 100%)",
+      "thumbnail": "",
+      "description": "A restrained brand reel concept for collecting campaign visuals. The direction balances polished image-making with an archive-like portfolio structure.",
+      "media": []
+    }
+  ]
+}

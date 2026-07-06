@@ -1,0 +1,66 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+site_url: "https://haeun-sun.netlify.app"
+display_url: "https://haeun-sun.netlify.app"
+locale: "en"
+
+collections:
+  - name: "site"
+    label: "Portfolio Content"
+    files:
+      - name: "portfolio"
+        label: "Works and About Me"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - label: "About Me"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Intro", name: "intro", widget: "text" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Field", name: "field", widget: "string" }
+              - { label: "Tools", name: "tools", widget: "string" }
+              - { label: "Contact", name: "contact", widget: "string", required: false }
+              - label: "History"
+                name: "history"
+                widget: "list"
+                summary: "{{fields.year}} - {{fields.text}}"
+                fields:
+                  - { label: "Year", name: "year", widget: "string" }
+                  - { label: "Text", name: "text", widget: "string" }
+          - label: "Works"
+            name: "works"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "ID / URL Slug", name: "id", widget: "string", hint: "Use lowercase letters, numbers, and hyphens. This becomes the direct link hash." }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category", name: "category", widget: "string" }
+              - { label: "Year", name: "year", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Type", name: "type", widget: "string" }
+              - { label: "Thumbnail Text", name: "label", widget: "string", required: false }
+              - label: "Visibility"
+                name: "visibility"
+                widget: "select"
+                default: "public"
+                options:
+                  - { label: "Public - show on WORKS", value: "public" }
+                  - { label: "Unlisted - open only by direct link", value: "unlisted" }
+              - { label: "Thumbnail Image or GIF", name: "thumbnail", widget: "image", required: false }
+              - { label: "Fallback Background CSS", name: "background", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Detail Media"
+                name: "media"
+                widget: "list"
+                required: false
+                summary: "{{fields.caption}}"
+                fields:
+                  - { label: "Image or GIF", name: "src", widget: "image" }
+                  - { label: "Alt Text", name: "alt", widget: "string", required: false }
+                  - { label: "Caption", name: "caption", widget: "string", required: false }
